@@ -1,0 +1,18 @@
+Package: bayesbio
+Title: Miscellaneous functions useful in bioinformatics and Bayesian statistics
+Version: 1.0.0
+Authors@R: person("Andrew", "McKenzie", email = "amckenz@gmail.com", role = c("aut", "cre"))
+Description: A hodgepodge of hopefully helpful functions. Two of these perform
+    shrinkage estimation: one using a simple weighted method where the user can
+    specify the degree of shrinkage required, and one using James-Stein shrinkage
+    estimation for the case of unequal variances.
+Depends:
+    R (>= 3.2.0)
+Suggests: 
+    ggplot2, 
+    RISmed, 
+    testthat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
