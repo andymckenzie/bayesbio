@@ -1,5 +1,5 @@
 Package: bayesbio
-Title: Miscellaneous functions useful in bioinformatics and Bayesian statistics
+Title: Miscellaneous Functions for Bioinformatics and Bayesian Statistics
 Version: 1.0.0
 Authors@R: person("Andrew", "McKenzie", email = "amckenz@gmail.com", role = c("aut", "cre"))
 Description: A hodgepodge of hopefully helpful functions. Two of these perform
