@@ -1,6 +1,6 @@
 Package: bayesbio
 Title: Miscellaneous Functions for Bioinformatics and Bayesian Statistics
-Version: 1.0.0
+Version: 1.0.1.9000
 Authors@R: person("Andrew", "McKenzie", email = "amckenz@gmail.com", role = c("aut", "cre"))
 Description: A hodgepodge of hopefully helpful functions. Two of these perform
     shrinkage estimation: one using a simple weighted method where the user can
