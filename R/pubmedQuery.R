@@ -11,6 +11,16 @@ pubmedQuery <- function(rowTerms, colTerms, sleepTime = 0.01){
   disease_gene_mentions = data.frame(matrix(0, nrow = length(rowTerms),
   	 ncol = length(colTerms) + 1))
 
+  if(any(duplicated(rowTerms))){
+    message("Duplicated entries in rowTerms; collapsing to unique terms.")
+    rowTerms = unique(rowTerms)
+  }
+
+  if(any(duplicated(colTerms))){
+    message("Duplicated entries in colTerms; collapsing to unique terms.")
+    colTerms = unique(colTerms)
+  }
+
   for(i in 1:length(colTerms)){
   	for(j in 1:length(rowTerms)){
   		res = RISmed::EUtilsSummary(paste(colTerms[i], "AND", rowTerms[j], sep = " ")

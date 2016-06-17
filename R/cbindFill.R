@@ -3,6 +3,7 @@
 #' @param ... A set of vectors separated by commas.
 #' @return A matrix that combines the inputted vectors.
 #' @references http://r.789695.n4.nabble.com/How-to-join-matrices-of-different-row-length-from-a-list-td3177212.html; http://stackoverflow.com/a/7962286/560791
+#' @export
 cbindFill <- function(...){
   cargs = list(...)
   cargs = lapply(cargs, as.matrix)
