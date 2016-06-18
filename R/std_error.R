@@ -1,5 +1,5 @@
 #' @title Find the standard error of the sampling distribution of a statistic.
-#' @description Finds the standard error of a numeric vector; by default, removes NAs prior to calculation.
+#' @description Finds the standard error of a numeric vector (i.e., the standard deviation divided by the square root of the sample size); by default, removes NAs prior to calculation.
 #' @param x The numeric vector whose standard error should be calculated.
 #' @param na.rm Logical; TRUE indicates that NAs should be removed from the vector prior to calculating the standard error, and vice versa for FALSE.
 #' @return A one-element numeric vector giving the standard error.
@@ -11,5 +11,5 @@ std_error <- function(x, na.rm = TRUE){
   }
   std_error = sd(x)/sqrt(length(x))
   return(std_error)
-  
+
 }
