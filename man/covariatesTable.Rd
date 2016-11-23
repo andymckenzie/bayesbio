@@ -20,6 +20,9 @@ covariatesTable(df, dg_col, percent_cols = NULL, quant_cols = NULL,
 
 \item{row_names}{Optional character vector specifying what the rownames of the resulting table should be.}
 }
+\value{
+A table summarizing the covariates.
+}
 \description{
 Take a data frame with a diagnosis column and a number of covariate columns and specify the percentage of specified covariate levels in each group and/or the mean +/- sd for quantitative variables for each covariate desired. Although it was designed for generating sample summary tables in the context of bioinformatics experiments and the terminology refers to this, it can be used more generally as well.
 }

@@ -8,9 +8,10 @@ Description: A hodgepodge of hopefully helpful functions. Two of these perform
     estimation for the case of unequal variances.
 Depends:
     R (>= 3.2.0)
-Suggests: 
-    ggplot2, 
-    RISmed, 
+Suggests:
+    ggplot2,
+    RISmed,
+    rentrez, 
     testthat
 License: GPL-3
 Encoding: UTF-8

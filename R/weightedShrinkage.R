@@ -1,4 +1,4 @@
-#' @title Weighted shrinkage estimation. 
+#' @title Weighted shrinkage estimation.
 #' @description Shrink values towards the mean (in the sample or the overall cohort) to an inverse degree to the confidence you assign to that observation.
 #' @param x Numeric vector of values to be shrunken towards the mean.
 #' @param n Numeric vector with corresponding entries to x, specifying the number of observations used to calculate x, or some other confidence weight to associate with x.

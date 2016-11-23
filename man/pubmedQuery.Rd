@@ -4,7 +4,7 @@
 \alias{pubmedQuery}
 \title{Perform PubMed queries on 2x2 combinations of term vectors.}
 \usage{
-pubmedQuery(rowTerms, colTerms, sleepTime = 0.01)
+pubmedQuery(rowTerms, colTerms, sleepTime = 0.01, ...)
 }
 \arguments{
 \item{rowTerms}{Character vector of terms that should make up the rows of the resulting mention count data frame.}
@@ -12,6 +12,8 @@ pubmedQuery(rowTerms, colTerms, sleepTime = 0.01)
 \item{colTerms}{Character vector of terms for the columns.}
 
 \item{sleepTime}{How much time (in seconds) to sleep between successive PubMed queries. If you set this too low, PubMed may shut down your connection to prevent overloading their servers.}
+
+\item{...}{Additional arguments to RISmed::EUtilsSummary}
 }
 \value{
 A data frame of the number of mentions for each combination of terms.

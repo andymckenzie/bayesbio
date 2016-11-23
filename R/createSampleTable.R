@@ -7,7 +7,7 @@
 #' @param group_names Optional character vector specifying the groups within the dg_col, which will be used to order the resulting table.
 #' @param row_names Optional character vector specifying what the rownames of the resulting table should be.
 #' @return A table summarizing the covariates.
-#' @export 
+#' @export
 covariatesTable <- function(df, dg_col, percent_cols = NULL, quant_cols = NULL,
   percent_col_cats = NULL, group_names = NULL, row_names = NULL){
 
@@ -28,9 +28,9 @@ covariatesTable <- function(df, dg_col, percent_cols = NULL, quant_cols = NULL,
 
     if(!is.null(percent_cols)){
       for(j in 1:length(percent_cols)){
-        tmp_percent_vals = tmp_df[tmp_df[ , percent_cols[j]] %in% percent_col_cats[j], ]
+        tmp_percent_vals = tmp_df[as.character(tmp_df[ , percent_cols[j]]) %in% percent_col_cats[j], ]
         tmp_percent_proportion = nrow(tmp_percent_vals) / tmp_df_n
-        res = c(res, round(tmp_percent_cols, 3) * 100)
+        res = c(res, round(tmp_percent_proportion, 3) * 100)
       }
     }
 

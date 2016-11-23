@@ -3,10 +3,18 @@
 #' @param rowTerms Character vector of terms that should make up the rows of the resulting mention count data frame.
 #' @param colTerms Character vector of terms for the columns.
 #' @param sleepTime How much time (in seconds) to sleep between successive PubMed queries. If you set this too low, PubMed may shut down your connection to prevent overloading their servers.
+#' @param ... Additional arguments to RISmed::EUtilsSummary
+#' @param use Package to use to search PubMed. Options = "rentrez", "RISmed".
 #' @return A data frame of the number of mentions for each combination of terms.
 #' @export
-pubmedQuery <- function(rowTerms, colTerms, sleepTime = 0.01){
-  if (!requireNamespace("RISmed", quietly=TRUE)) stop("Please install package 'RISmed' to use this function.")
+pubmedQuery <- function(rowTerms, colTerms, sleepTime = 0.01, use = "rentrez", ...){
+
+  if(use == "RISmed"){
+    if (!requireNamespace("RISmed", quietly=TRUE)) stop("Please install package 'RISmed' to use this function.")
+  }
+  if(use == "rentrez"){
+    if (!requireNamespace("rentrez", quietly=TRUE)) stop("Please install package 'rentrez' to use this function.")
+  }
 
   disease_gene_mentions = data.frame(matrix(0, nrow = length(rowTerms),
   	 ncol = length(colTerms) + 1))
@@ -23,17 +31,32 @@ pubmedQuery <- function(rowTerms, colTerms, sleepTime = 0.01){
 
   for(i in 1:length(colTerms)){
   	for(j in 1:length(rowTerms)){
-  		res = RISmed::EUtilsSummary(paste(colTerms[i], "AND", rowTerms[j], sep = " ")
-  			, type = 'esearch', db = 'pubmed')
-  		disease_gene_mentions[j, i] = RISmed::QueryCount(res)
-  		Sys.sleep(sleepTime)
+      query = paste(colTerms[i], "AND", rowTerms[j], sep = " ")
+      str(query)
+      if(use == "RISmed"){
+        res = RISmed::EUtilsSummary(query,
+          type = 'esearch', db = 'pubmed', ...)
+    		disease_gene_mentions[j, i] = RISmed::QueryCount(res)
+    		Sys.sleep(sleepTime)
+      }
+      if(use == "rentrez"){
+        res = entrez_search(db="pubmed", term = query)
+        disease_gene_mentions[j, i] = as.numeric(res$count)
+        Sys.sleep(sleepTime)
+      }
   	}
   }
 
   total_res = numeric(length(rowTerms))
   for(j in 1:length(rowTerms)){
-    res = RISmed::EUtilsSummary(rowTerms[j], type = 'esearch', db = 'pubmed')
-    total_res[j] = RISmed::QueryCount(res)
+    if(use == "RISmed"){
+      res = RISmed::EUtilsSummary(rowTerms[j], type = 'esearch', db = 'pubmed')
+      total_res[j] = RISmed::QueryCount(res)
+    }
+    if(use == "rentrez"){
+      res = entrez_search(db="pubmed", term = rowTerms[j])
+      total_res[j] = as.numeric(res$count)
+    }
     Sys.sleep(sleepTime)
   }
 
