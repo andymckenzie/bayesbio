@@ -29,8 +29,8 @@ nearestTime <- function(df1, df2, timeCol1, timeCol2){
 #' @title Merge data frames based on the nearest datetime differences and an ID column. Also removes duplicate column names from the result.
 #' @description Takes two data frames each with time/date columns in date-time or date format (i.e., able to be compared using the function difftime), finds the rows of df2 that minimize the absolute value of the datetime for each of the rows in df1, and merges the corresponding rows of df2 into df1 for downstream processing.
 #' @param IDcol Must be unique by row in df1. Multiple versions are allowed (and expected at least in some rows, as that is the point of the function) in df2.
-#' @param df1 Data frame containing the dates for which the differences between the other data frame's date column should be minimized for each row.
-#' @param df2 Data frame containing the dates which should be compared to, as well as other values that should be merged to df1 per minimized date time.
+#' @param df1 Data frame containing the dates for which the differences between the other data frame's date column should be minimized for each row. This df must not have the additional classes of ‘tbl_df’ or ‘tbl’ that are produced when data is read in using read_excel from the readxl R package.  
+#' @param df2 Data frame containing the dates which should be compared to, as well as other values that should be merged to df1 per minimized date time. This df must not have the additional classes of ‘tbl_df’ or ‘tbl’ that are produced when data is read in using read_excel from the readxl R package.  
 #' @param timeCol1 Character vector specifying the date/time column in df1.
 #' @param timeCol2 Character vector specifying the date/time column in df2.
 #' @return A merged data frame that minimizes datetime differences.
